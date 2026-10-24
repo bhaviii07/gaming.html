@@ -1,0 +1,507 @@
+# Adventure & Trekking Website — PeakQuest
+
+Create a file named `index.html` and paste the following code into it.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PeakQuest | Adventure & Trekking</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080d16;
+    color: white;
+}
+
+header {
+    background: #101a29;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    color: #79d8ff;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #79d8ff;
+}
+
+.hero {
+    height: 480px;
+    background:
+    linear-gradient(to right, rgba(0,0,0,.8), rgba(0,0,0,.2)),
+    url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=85");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 7%;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hero h1 {
+    font-size: 52px;
+    margin-bottom: 18px;
+}
+
+.hero h1 span {
+    color: #79d8ff;
+}
+
+.hero p {
+    line-height: 1.7;
+    color: #e0eaf2;
+    margin-bottom: 25px;
+}
+
+.btn {
+    display: inline-block;
+    background: #79d8ff;
+    color: #07111d;
+    padding: 13px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+section {
+    padding: 55px 7%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    color: #79d8ff;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #b7c4d3;
+}
+
+.trail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+}
+
+.trail-card {
+    background: #121e2d;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #26394c;
+    transition: transform .3s;
+}
+
+.trail-card:hover {
+    transform: translateY(-7px);
+}
+
+.trail-image {
+    height: 220px;
+    position: relative;
+}
+
+.trail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,.8));
+}
+
+.difficulty {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #79d8ff;
+    color: #07111d;
+    padding: 7px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.trail-info {
+    padding: 20px;
+}
+
+.trail-info h3 {
+    margin-bottom: 12px;
+}
+
+.trail-info p {
+    color: #b7c4d3;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 18px;
+    color: #79d8ff;
+    font-size: 13px;
+    flex-wrap: wrap;
+}
+
+.panels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+}
+
+.panel {
+    background: #121e2d;
+    border-left: 4px solid #79d8ff;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+.panel h3 {
+    color: #79d8ff;
+    margin-bottom: 18px;
+}
+
+.panel p, .panel li {
+    color: #d0dbe7;
+    line-height: 1.9;
+    font-size: 14px;
+}
+
+.panel ul {
+    padding-left: 20px;
+}
+
+.price {
+    color: #79d8ff;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.price-card {
+    text-align: center;
+}
+
+.price-card .btn {
+    margin-top: 18px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 9px;
+    transition: .3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.03);
+}
+
+.checklist label {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.checklist input {
+    accent-color: #79d8ff;
+    margin-right: 8px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #101a29;
+    color: #b7c4d3;
+}
+
+footer span {
+    color: #79d8ff;
+}
+
+@media (max-width: 600px) {
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 7px;
+    }
+
+    .hero {
+        height: 420px;
+    }
+
+    .hero h1 {
+        font-size: 37px;
+    }
+
+    section {
+        padding: 40px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🏔️ PeakQuest</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#treks">Treks</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#equipment">Equipment</a>
+        <a href="#packages">Packages</a>
+    </nav>
+</header>
+
+<div class="hero" id="home">
+    <div class="hero-content">
+        <h1>Find Your Next <span>Adventure</span></h1>
+        <p>
+            Explore beautiful mountain trails, enjoy peaceful camping nights,
+            and discover unforgettable adventures with PeakQuest.
+        </p>
+        <a href="#treks" class="btn">Explore Treks →</a>
+    </div>
+</div>
+
+<section id="treks">
+    <div class="section-title">
+        <h2>Popular Trekking Routes</h2>
+        <p>Choose a trail that matches your adventure level.</p>
+    </div>
+
+    <div class="trail-grid">
+
+        <div class="trail-card">
+            <div class="trail-image">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Snowy mountain peaks">
+                <div class="overlay"></div>
+                <span class="difficulty">Easy</span>
+            </div>
+            <div class="trail-info">
+                <h3>Mountain View Trail</h3>
+                <p>A relaxing route with fresh air, scenic views, and beautiful landscapes.</p>
+                <div class="details">
+                    <span>⏱ 3 hours</span>
+                    <span>📍 5 km</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="trail-card">
+            <div class="trail-image">
+                <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=80" alt="Hikers walking through a mountain trail">
+                <div class="overlay"></div>
+                <span class="difficulty">Moderate</span>
+            </div>
+            <div class="trail-info">
+                <h3>Forest Ridge Trek</h3>
+                <p>Walk through forest paths and climb scenic hills with your trekking team.</p>
+                <div class="details">
+                    <span>⏱ 6 hours</span>
+                    <span>📍 10 km</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="trail-card">
+            <div class="trail-image">
+                <img src="https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=800&q=80" alt="High mountain landscape">
+                <div class="overlay"></div>
+                <span class="difficulty">Hard</span>
+            </div>
+            <div class="trail-info">
+                <h3>Summit Challenge</h3>
+                <p>A demanding mountain adventure for experienced trekkers with proper preparation.</p>
+                <div class="details">
+                    <span>⏱ 2 days</span>
+                    <span>📍 18 km</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="schedule">
+    <div class="section-title">
+        <h2>Trip Schedules</h2>
+        <p>Example itineraries for planning your next outdoor trip.</p>
+    </div>
+
+    <div class="panels">
+        <div class="panel">
+            <h3>🌄 One-Day Trek</h3>
+            <p>07:00 AM — Meet the group</p>
+            <p>08:00 AM — Begin the trek</p>
+            <p>12:00 PM — Lunch and rest</p>
+            <p>03:00 PM — Return journey</p>
+        </div>
+
+        <div class="panel">
+            <h3>⛺ Weekend Camping</h3>
+            <p>Day 1 — Arrival and campsite setup</p>
+            <p>Day 1 — Guided nature walk</p>
+            <p>Day 1 — Dinner and camp activities</p>
+            <p>Day 2 — Breakfast and return</p>
+        </div>
+    </div>
+</section>
+
+<section id="equipment">
+    <div class="section-title">
+        <h2>Adventure Checklist</h2>
+        <p>Tick off your essentials before heading out.</p>
+    </div>
+
+    <div class="panels">
+        <div class="panel checklist">
+            <h3>🎒 Essential Equipment</h3>
+            <label><input type="checkbox"> Comfortable trekking shoes</label>
+            <label><input type="checkbox"> Backpack</label>
+            <label><input type="checkbox"> Water bottle</label>
+            <label><input type="checkbox"> Weather-appropriate clothing</label>
+            <label><input type="checkbox"> Rain jacket</label>
+            <label><input type="checkbox"> Flashlight and spare batteries</label>
+            <label><input type="checkbox"> First-aid kit</label>
+        </div>
+
+        <div class="panel">
+            <h3>🛡️ Safety Guidelines</h3>
+            <ul>
+                <li>Check the weather before departure.</li>
+                <li>Stay with your group and follow the guide.</li>
+                <li>Carry enough water and food.</li>
+                <li>Follow marked trails and local rules.</li>
+                <li>Tell someone your planned route.</li>
+                <li>Carry a charged phone and emergency contacts.</li>
+                <li>Never attempt difficult routes without suitable experience.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="packages">
+    <div class="section-title">
+        <h2>Adventure Packages</h2>
+        <p>Sample prices per person. Customize these for your project.</p>
+    </div>
+
+    <div class="trail-grid">
+
+        <div class="panel price-card">
+            <h3>Starter Trek</h3>
+            <p>Perfect for beginners</p>
+            <div class="price">₹999</div>
+            <p>Guided short trek</p>
+            <p>Basic safety briefing</p>
+            <p>Group activities</p>
+            <button class="btn" onclick="bookTrip('Starter Trek')">Choose Package</button>
+        </div>
+
+        <div class="panel price-card">
+            <h3>Camping Escape</h3>
+            <p>A weekend in nature</p>
+            <div class="price">₹2,499</div>
+            <p>Guided trekking</p>
+            <p>Camping experience</p>
+            <p>Meals as specified</p>
+            <button class="btn" onclick="bookTrip('Camping Escape')">Choose Package</button>
+        </div>
+
+        <div class="panel price-card">
+            <h3>Summit Adventure</h3>
+            <p>For experienced trekkers</p>
+            <div class="price">₹4,999</div>
+            <p>Multi-day itinerary</p>
+            <p>Experienced guide</p>
+            <p>Camping arrangements</p>
+            <button class="btn" onclick="bookTrip('Summit Adventure')">Choose Package</button>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="section-title">
+        <h2>Adventure Gallery</h2>
+        <p>Get inspired by the beauty of the outdoors.</p>
+    </div>
+
+    <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=600&q=80" alt="Wild nature">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Scenic outdoor landscape">
+        <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=600&q=80" alt="Mountain landscape">
+        <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=600&q=80" alt="Forest trail">
+    </div>
+</section>
+
+<footer>
+    <p>🏔️ <span>PeakQuest</span> — Explore More. Discover Yourself.</p>
+    <p>Adventure begins where the road ends.</p>
+</footer>
+
+<script>
+function bookTrip(packageName) {
+    alert("You selected the " + packageName +
+          " package! Contact the organizer to confirm your trip.");
+}
+</script>
+
+</body>
+</html>
+```
+
